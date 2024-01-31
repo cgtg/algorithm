@@ -13,7 +13,7 @@ public class Solution {
              {
                  tmp.RemoveAt(k);
              }
-             answer.Add(tmp.Take(k).Last());
+             answer.Add(tmp.Last());
          }
          return answer.ToArray();
     }
