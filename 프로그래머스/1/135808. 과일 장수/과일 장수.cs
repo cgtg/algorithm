@@ -1,21 +1,11 @@
 using System;
-using System.Linq;
 public class Solution {
     public int solution(int k, int m, int[] score) {
         int answer = 0;
-        if(m > score.Length){
-            return answer;
-        }
-        
-        // 정렬해서 큰순서대로 m개씩
-        Array.Sort(score, (a, b) => b.CompareTo(a));
-        for(int i=0; i < score.Length; i+=m){
-            int[] box = score.Skip(i).Take(m).ToArray();
-            if(box.Length < m){
-                break;
-            }
-            int minVal = box.Last();
-            answer += minVal*m;
+        // 정렬해서 뒤에서부터 탐색. 상자 마지막에 위치할 값만 가져와 계산
+        Array.Sort(score);
+        for(int i=score.Length-m; i >= 0 ; i-=m){
+            answer += score[i] * m;
         }
         return answer;
     }
